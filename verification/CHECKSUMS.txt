@@ -1,11 +1,12 @@
 # sha256 of every tracked file, excluding verification/ itself
-# date: 2026-09-18T05:33:45Z
+# date: 2026-09-18T06:04:07Z
 # toolchain: leanprover/lean4:v4.34.0
 # mathlib:   5ed2965256430c3649e86755f9576b54eca72435
 # verify with: shasum -a 256 -c <(grep -v '^#' verification/CHECKSUMS.txt)
 9ddeb7cb6af42a16a31bc4df8fbf6510ec67d4c29476d31a35718693ea4d96dc  .gitignore
+dbdb4716812c0ad4f1b8035206b78799c0f4b8d7edd0a2cec0fbda0a1cc5a55d  AUTHORS.md
 3cb47b561a27a1e03c77aeb2319e5aed29553974340dfa9eeafbfbbfe282c1ef  Axioms.lean
-9b2b85cd8f861b70a84027827d9e4c8dcd12eb7408f666be3e82ccd6ec699018  Erdos960.lean
+d264ccb63f8e18cb0fb01b424d95f5f4b40b1665f2a56276bc8aaabc39a2bef2  Erdos960.lean
 80d4bb747af374463d93ec2a89eaef0f13fb8c8a3213d59ed45ebe246941843b  Erdos960/Bridge.lean
 b49d7fb73658659397cebc93c729c9e39bf501a980c78809b5f426641b46d831  Erdos960/Combinatorial.lean
 cc66d1ff47160432c5cc0a8bf6fa9af2397fbde801b58df95d593dbcba4d2038  Erdos960/Curve.lean
@@ -13,9 +14,9 @@ f852febe4a2d60f96c39c68ef586c86eca860f277fc914b4ec8156e97fa553bf  Erdos960/Defs.
 f2396003065a7547fb79fa3dc22f80e81955566d2e575ca08ee4062d83f60d4f  Erdos960/Main.lean
 4f63ffb162e25b535b4d52242ba0769c6973facf0820326d2af6a305cc8aa6be  Erdos960/Nodal.lean
 795a685dccf5144a845d2c31a2d4aa355d3713f5529c7a22c632af84d8cb4af0  LICENSE
-9cdf141f6d19dabb6602ff11a728149bcde2ddf06e9d2dce0209f41226677aec  README.md
+d0af44fc43814d301b5a6b57f1930040986fcbdd659c082f15a3def80b318407  README.md
 ff16334f6a97a11b76a09f5c5180c9a15ebe724a33b5e53cb3ae14c97eeeb088  docs/ACCEPTANCE.md
-75fcda0b185c228a1e5055ad1b8b02511aaec9096b0463c46961411ba0caef34  docs/CLAIM.md
+a2a71b275de9c76bc9a55983de30156d973a16ba76a5693a0d4702997ed5fb44  docs/CLAIM.md
 6c7c6a687e6ee3bcd5e4d99481e54679dcbe27b703939d82891ee56f4b8a40de  docs/COMBINATORIAL-REPORT.md
 f4ba26da518d225cd45e9fc195e3424a1a91095af5db1413ec3c3d666447f333  docs/CURVE-REPORT.md
 c649f626965b05de618a4a7892d682cd3f25e5ea7c682260bfdd485fc68b143e  docs/GATE0.md

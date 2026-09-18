@@ -5,9 +5,8 @@
 Erdos960/Bridge.lean:4:`Combinatorial.lean` is the `ZMod (7m)` side and is `sorry`-free; this file holds the
 Erdos960/Combinatorial.lean:11:**Status: this file is `sorry`-free.** The one obligation that used to live here,
 
-# Both matches are prose, inside file-header documentation, where the words
-# `sorry`-free appear. Neither is a `sorry` term. The mechanical criterion is the
-# next block: Lean's own `declaration uses 'sorry'` count, which is 0.
+# Matches above are prose inside file-header documentation, where the words
+# `sorry`-free appear. None is a `sorry` term. The mechanical criterion is below.
 
 # Lean's own count of sorry warnings in the clean rebuild:
 declaration uses 'sorry' : 0

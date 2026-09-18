@@ -1,3 +1,10 @@
+> **⚠ 2026-09-18 更新:下文的「永久缺口」已经补上。**
+> 本台账写于交付时,当时 `CurveModelAssumption`(论文 Lemma 2.2 + 共线判据)是主定理签名里
+> 的显式假设。它现在是一条定理:`Erdos960.curveModelAssumption`,证明在
+> `Erdos960/Nodal.lean`,走奇异三次曲线 `Z(X² + Y²) = X³` 的角度参数化。
+> 主定理的无假设版本是 `Erdos960.erdos960_unconditional`。
+> 下文关于「永久缺口」「条件定理」的段落按当时状态保留,不再成立。
+
 # SORRY 台账 —— Erdős 960 形式化
 
 **状态:台账已清零。库内 `sorry` 数 = 0。**

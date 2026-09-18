@@ -3,3 +3,4 @@ import Erdos960.Curve
 import Erdos960.Combinatorial
 import Erdos960.Bridge
 import Erdos960.Main
+import Erdos960.Nodal

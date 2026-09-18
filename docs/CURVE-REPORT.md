@@ -1,3 +1,7 @@
+> **⚠ 2026-09-18 更新:`CurveModel` 的存在性已被证明。**
+> 本报告写于 `exists_curveModel_zmod` 尚未有实例时。实例现在有了:
+> `Erdos960.Nodal.curveModel`,建在奇异三次曲线 `Z(X² + Y²) = X³` 上,见 `Erdos960/Nodal.lean`。
+
 # 曲线侧报告 —— `Erdos960/Curve.lean`
 
 **日期**:2026-09-18

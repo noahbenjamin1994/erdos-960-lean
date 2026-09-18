@@ -5,13 +5,24 @@ import Erdos960
 Only `propext`, `Classical.choice`, `Quot.sound` are permitted. Any `sorryAx` or custom
 `axiom` appearing below is an acceptance failure for the whole task.
 
-Note in particular that `Erdos960.erdos960` — the main theorem — must appear with exactly
-those three. `CurveModelAssumption` (paper Lemma 2.2 + the collinearity criterion) is *not*
-an axiom: it is a `def … : Prop` that enters `erdos960` as an explicit hypothesis, so it
-cannot and does not show up here. -/
+Note in particular that `Erdos960.erdos960_unconditional` — the main theorem, with no
+hypothesis beyond the paper's own numeric ones — must appear with exactly those three.
+`CurveModelAssumption` (paper Lemma 2.2 + the collinearity criterion) is *not* an axiom: it
+is a `def … : Prop`, it enters `erdos960` as an explicit hypothesis, and
+`Erdos960.curveModelAssumption` now proves it outright on a nodal cubic. -/
 
 /-! ## Main theorem (Theorem 2.1) and its assembly -/
 
+#print axioms Erdos960.erdos960_unconditional
+#print axioms Erdos960.curveModelAssumption
+#print axioms Erdos960.Nodal.curveModel
+#print axioms Erdos960.Nodal.collinear_emb_iff
+#print axioms Erdos960.Nodal.emb_injective
+#print axioms Erdos960.Nodal.det3_Pt
+#print axioms Erdos960.Nodal.collinear_iff_det2
+#print axioms Erdos960.Nodal.collinear_chart_iff
+#print axioms Erdos960.Nodal.Pt_mem_cubic
+#print axioms Erdos960.Nodal.sin_ang_eq_zero_iff
 #print axioms Erdos960.erdos960
 #print axioms Erdos960.erdos960_of_curveModelAssumption
 #print axioms Erdos960.exists_admissible

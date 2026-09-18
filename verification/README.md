@@ -5,8 +5,8 @@ here is raw output of the command named beside it, captured on 2026-09-18 from a
 
 | File | Command | Result |
 |---|---|---|
-| [`build.log`](build.log) | `rm -rf .lake/build && lake build` | exit 0, 8930 jobs, 51.9s |
-| [`axioms.log`](axioms.log) | `lake env lean Axioms.lean` | 123 declarations audited |
+| [`build.log`](build.log) | `rm -rf .lake/build && lake build` | exit 0, 8931 jobs, 40.0s |
+| [`axioms.log`](axioms.log) | `lake env lean Axioms.lean` | 133 declarations audited |
 | [`scan.log`](scan.log) | placeholder and escape-hatch scan over every tracked `.lean` file | see the file |
 | [`CHECKSUMS.txt`](CHECKSUMS.txt) | `git ls-files \| xargs shasum -a 256` | sha256 of every tracked file |
 
@@ -32,4 +32,4 @@ the kernel accepts every audited declaration using only `propext`, `Classical.ch
 `Quot.sound`. Lines reporting a subset of those three are stronger rather than weaker.
 
 It leaves open whether the Lean statement says what the original problem says. That question is
-human review, and the document for it is [`docs/GATE0.md`](../docs/GATE0.md) read together with the conditional-theorem warning at the top of the README, since the main theorem carries the paper's Lemma 2.2 as an explicit hypothesis.
+human review, and the document for it is [`docs/statement-fidelity.md`](../docs/statement-fidelity.md), together with the `How Lemma 2.2 is proved` section of the top-level README, since the witnessing configuration sits on a different cubic than the paper's.

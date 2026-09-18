@@ -1,88 +1,152 @@
-# Draft issue — JSP-000799 (Erdős 960)
+# Draft claim — JSP-000799 (Erdős 960)
 
-**⚠ This is deliberately not a `[Recipient]` claim.**
+Draft text for a claim on `TheJustinSunPrize/awards`. Check the items at the bottom before
+posting.
 
-The development is a **conditional** formalization: the paper's Lemma 2.2 is an explicit
-hypothesis in the main theorem's signature. A formalizer claim on JSP-000799 asserts that an
-existing proof has been turned into a machine-checkable proof, and that is not yet true here.
-Posting this as `[Recipient]` would overstate the work, and the awards repository has already
-asked for one claim to be withdrawn for misrepresenting what was formalized.
-
-Two honest options:
-
-1. **Close the gap first** — prove `CurveModelAssumption`, i.e. construct an order-`7m` cyclic
-   subgroup of `E(ℝ)` inside the plane with collinearity given by the group law. This means
-   giving `WeierstrassCurve.Affine.Point` a topology and reaching `E(ℝ) ≅ ℝ/ℤ`, none of which
-   exists in Mathlib today (see [`GATE0.md`](GATE0.md)). Then claim normally.
-2. **Publish as-is, without claiming** — announce the conditional development, state the gap in
-   the first paragraph, and invite someone to close it. Establishes a public timestamp on the
-   combinatorial 95% without asserting something untrue.
-
-Draft text for option 2 follows.
+> Earlier versions of this file argued **against** claiming, because the paper's Lemma 2.2 was
+> an explicit hypothesis of the main theorem, which made the development conditional. That gap
+> is now closed: `Erdos960.curveModelAssumption` proves it, and
+> `Erdos960.erdos960_unconditional` carries no hypothesis beyond the paper's own numeric ones.
 
 ---
 
-**Title:** `Conditional Lean 4 formalization of Erdős 960 / JSP-000799 (Lemma 2.2 still assumed)`
+**Title:** `[Award claim] JSP-000799 Lean formalization`
 
 **Body:**
 
-Posting this for the record rather than as a claim: the formalization is **conditional** and I am
-not asserting that JSP-000799 has been formalized.
+**Problem link:** https://github.com/TheJustinSunPrize/awards/blob/main/problems/catalog-0701-0800.md#JSP-000799
 
-### What exists
+**Original Lean proof repository:** https://github.com/noahbenjamin1994/erdos-960-lean
 
-A Lean 4 development of Theorem 2.1 of Alexeev–Putterman–Sawhney–Sellke–Valiant,
-*Short proofs in combinatorics, probability and number theory II*, arXiv:2604.06609, §2:
+**Follow-up contact email:** noahbenjamin1994@gmail.com
+
+**Contribution being claimed:** Lean formalization
+
+**Identity verification method:** Lean only. The repository is owned by this submitting account
+and all commits are from it. Happy to follow any additional check the maintainers prefer.
+
+### What is being claimed
+
+A Lean 4 formalization of Theorem 2.1 of Alexeev, Putterman, Sawhney, Sellke and Valiant,
+*Short proofs in combinatorics, probability and number theory II*, arXiv:2604.06609, §2, which
+answers Erdős 960 in the negative.
+
+The mathematics belongs entirely to those five authors. **Prover credit is theirs; this claim
+is for formalizer credit only.** No new mathematics is contributed.
+
+### The formalized statement
 
 ```lean
-theorem erdos960
-    (r k n : ℕ) (hr : 3 ≤ r) (hk : 4 ≤ k) (hn : 72 ≤ n)
-    (hcurve : ∀ m : ℕ, 0 < m → Nonempty (CurveModel (ZMod (7 * m)))) :
+theorem erdos960_unconditional (r k n : ℕ) (hr : 3 ≤ r) (hk : 4 ≤ k) (hn : 72 ≤ n) :
     (n : ℝ) ^ 2 / 12 - 10 * (n : ℝ) / 3 ≤ (F r k n : ℝ)
 ```
 
-Repository: https://github.com/noahbenjamin1994/erdos-960-lean. Lean `v4.34.0`, Mathlib commit
-`5ed2965256430c3649e86755f9576b54eca72435`.
+`F r k n` is the paper's `F_{r,k}(n)`, defined in `Erdos960/Defs.lean` as genuine plane
+geometry: `ptsOn`, `IsLine` and `ordinaryLine` live on `ℝ × ℝ` and `AffineSubspace ℝ (ℝ × ℝ)`,
+and `ord A` is the `Set.ncard` of the ordinary lines of `A`. `formal-conjectures` has no
+statement for this problem, so the statement is ours and its fidelity is our own risk;
+`docs/statement-fidelity.md` compares it with the paper clause by clause. Four points a
+reviewer is most likely to probe:
 
-Zero `sorry`; all 123 exported declarations audit to `propext` / `Classical.choice` / `Quot.sound`;
-builds in 39.4 s from a clean `.lake/build` (8930 jobs). Unedited command output is in
-`docs/ACCEPTANCE.md`.
+- **Finiteness of `ord` is proved, not assumed** (`ordinaryLines_finite`). `Set.ncard` returns
+  `0` on infinite sets, so without it the bound could silently be a claim about `0`.
+- **The bound is stated over `ℝ`.** `n²/12` and `10n/3` are not integers in general, and `ℕ` or
+  `ℤ` truncation would change the claim. `F` lands in `ℤ` because the paper's degenerate value
+  is `−1`, and that branch is excluded under the theorem's own hypotheses.
+- **All three numeric hypotheses are consumed.** `k ≥ 4` is used by `noKCollinear_pts`, and is
+  false for `k = 3` since the construction does contain three collinear points; `r ≥ 3` by
+  `cliqueFree_of_isBipartite`; `n ≥ 72` becomes `m ≥ 12` through `zsmul_hgen_inj`, and
+  weakening it to `0 < m` was measured to break two `omega` calls.
+- **Anti-vacuity.** The bound is `192 > 0` at `n = 72`, so the statement is not satisfied
+  trivially.
 
-### What is assumed, and why
+### One deliberate departure from the paper: the curve
 
-`hcurve` is the paper's Lemma 2.2 plus the collinearity criterion: a cyclic group of order `7m`
-embeds in `ℝ²` so that three distinct points are collinear exactly when they sum to zero. It is
-neither an `axiom` nor a `sorry` — it is a hypothesis in the signature, visible to any reader, and
-the axiom audit stays clean precisely because nothing is asserted.
+The paper builds its point configuration on the smooth curve `y² = x³ − x + 1` and obtains
+cyclic subgroups of every order from `E(ℝ)` being connected, hence `E(ℝ) ≅ ℝ/ℤ`. That route is
+unavailable in Mathlib today: there is no `TopologicalSpace` instance on
+`WeierstrassCurve.Affine.Point`, no Lie theory for it, and no uniformization `ℂ/Λ ≅ E(ℂ)`. The
+search is logged in `docs/GATE0.md`.
 
-The paper obtains it from `E(ℝ)` being connected, hence isomorphic to the circle group. Mathlib has
-no `TopologicalSpace` instance on `WeierstrassCurve.Affine.Point` at all, no Lie-group theory for
-it, and no uniformization `ℂ/Λ ≅ E(ℂ)`; the search is logged in `docs/GATE0.md`. Filling this step
-means building that theory.
+The counting argument does not need the specific curve, and the paper says so in §2.2: "while
+we use a specific elliptic curve below for concreteness, any (non-degenerate) elliptic curve
+suffices". What it needs is packaged as `CurveModel`: an injection of the group into the plane
+under which three pairwise distinct points are collinear exactly when they sum to zero.
 
-Everything downstream of the assumption is proved: Proposition 2.4, Proposition 2.5, the bipartite
-ordinary-line graph, `e(G_A) = ord(A)`, and the final bound. Lemma 2.3 (no four collinear points)
-is **proved**, not assumed, from the collinearity criterion alone. For the concrete curve
-`y² = x³ − x + 1` the repository also proves the discriminant is `−368` (Mathlib's LMFDB
-normalization of the paper's `−23`), non-singularity, and Lemma 2.3 algebraically via
-`Polynomial.card_roots'`; none of that is used by the main theorem — its purpose is to pin the gap
-to exactly one step.
+This repository supplies such a model on the **nodal** cubic `Z(X² + Y²) = X³`, which has an
+acnode at `[0 : 0 : 1]`, so its real smooth locus is a circle and it carries cyclic subgroups of
+every order. Parametrised by an angle, `Pt φ = (cos (φ + π/6), sin (φ + π/6), cos (φ + π/6)^3)`,
+everything reduces to one identity:
 
-### Credit
+```
+det3 (Pt a) (Pt b) (Pt c) = sin (b - a) * sin (c - a) * sin (c - b) * sin (a + b + c)
+```
 
-The mathematics is entirely due to Alexeev, Putterman, Sawhney, Sellke and Valiant. Prover credit
-belongs to them. Nothing new is contributed mathematically, and no prize claim is made here.
+so collinearity is `a + b + c ≡ 0 (mod π)`, and `φ = k·π/N` gives `ZMod N`. Two details matter:
+the `π/6` shift puts the origin of the group law at an inflection point, without which the
+criterion reads `≡ π/2`; and the affine chart is chosen after the subgroup, by dividing by the
+linear form through reference points at angles `π/(4N)` and `2π/(4N)`, since for even `N` one
+group point would otherwise sit on the line at infinity. The reference line meets the cubic at
+angles whose numerators are `1`, `2` and `−3`, none divisible by `4`, so no `kπ/N` lands on it.
 
-If someone closes the `E(ℝ) ≅ ℝ/ℤ` gap in Mathlib, this development plugs into it directly.
+This is stated plainly rather than buried: **the bound proved is the paper's Theorem 2.1, but
+the witnessing configuration is on a different cubic than the paper's.** The proof uses no
+topology, no Lie groups and no uniformization.
+
+The repository also contains a `Concrete` namespace proving what Mathlib does support for the
+paper's own curve, namely discriminant `−368` (`= 16 ×` the paper's `−23` under Mathlib's LMFDB
+normalization), non-singularity, and Lemma 2.3 for it via `Polynomial.card_roots'`. The main
+theorem does not use it, and it is not claimed as part of the result.
+
+Lemma 2.3 of the paper, no four collinear points, is a **theorem** here rather than an
+assumption: it follows from the collinearity criterion by cancellation alone.
+
+### How to verify
+
+```bash
+lake exe cache get
+lake build                  # 8931 jobs
+lake env lean Axioms.lean   # 133 `#print axioms`
+```
+
+- Zero `sorry`, no custom `axiom`, no `native_decide`, no `Lean.ofReduceBool`.
+- All 133 audited declarations report only `propext`, `Classical.choice`, `Quot.sound`. Several
+  report fewer, which is stronger.
+- Raw output of a clean rebuild is committed in `verification/`: `build.log`, `axioms.log`,
+  `scan.log` and `CHECKSUMS.txt`, so the numbers above can be diffed rather than trusted.
+- `grep -rn sorry Erdos960/` matches twice, both times the words `` `sorry`-free `` in
+  file-header prose. The mechanical criterion is Lean's own `declaration uses 'sorry'` count,
+  which is 0.
+
+Environment: Lean `leanprover/lean4:v4.34.0`, Mathlib commit
+`5ed2965256430c3649e86755f9576b54eca72435`, both pinned in the repository.
+
+### Related claims, attribution questions and conflicts
+
+None. A competition check found no claim issue for JSP-000799, no public GitHub repository
+formalizing this problem, and no open `formal-conjectures` PR; its statement PR #5872 was closed
+and issue #1037 is still open. No co-contributors, and no professional relationship with the
+paper's authors.
+
+### Applicant declarations
+
+- [x] I am applying for my own contribution using my own GitHub account, and am acting for no
+      one else.
+- [x] My claim concerns my own contribution to the Lean proof referenced in the identified
+      problem bank entry. Attribution points that need review are identified above.
+- [x] I have disclosed related claims and attribution conflicts and will complete the
+      maintainer's contribution and identity verification before claiming payment.
 
 ---
 
 ## Pre-submission checklist
 
-- [ ] Decide between option 1 (close the gap, then claim) and option 2 (publish, do not claim).
-- [ ] If option 2: keep "conditional" in the title and in the first sentence. Do not describe it as
-      a formalization of Theorem 2.1.
-- [x] Pushed public 2026-09-18T04:05Z. No issue posted anywhere for this problem yet.
-- [ ] Re-check the competition state: JSP issues for 000799, GitHub repos matching `jsp-000799-*`,
-      and `formal-conjectures` issue #1037 (still open; statement PR #5872 was closed).
+- [x] Lemma 2.2 proved, so the main theorem is unconditional.
+- [x] Clean rebuild verified locally; evidence committed under `verification/`.
+- [ ] Push the updated repository before posting, so the claim points at the unconditional
+      theorem rather than the conditional one.
+- [ ] Keep the curve departure in the claim body. It is the one thing a reviewer could
+      reasonably call a deviation, and it should come from us rather than from them.
+- [ ] Re-check the competition state on the day of submission: JSP issues for 000799, GitHub
+      repositories matching `jsp-000799-*` or `erdos-960-*`, open `formal-conjectures` PRs.
 - [ ] Post on its own. Do not batch it with other problems.

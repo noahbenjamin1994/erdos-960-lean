@@ -41,7 +41,7 @@ theorem erdos960
     (n : ℝ) ^ 2 / 12 - 10 * (n : ℝ) / 3 ≤ (F r k n : ℝ)
 ```
 
-Repository: `<REPO URL>`. Lean `v4.34.0`, Mathlib commit
+Repository: https://github.com/noahbenjamin1994/erdos-960-lean. Lean `v4.34.0`, Mathlib commit
 `5ed2965256430c3649e86755f9576b54eca72435`.
 
 Zero `sorry`; all 123 exported declarations audit to `propext` / `Classical.choice` / `Quot.sound`;
@@ -82,7 +82,7 @@ If someone closes the `E(ℝ) ≅ ℝ/ℤ` gap in Mathlib, this development plug
 - [ ] Decide between option 1 (close the gap, then claim) and option 2 (publish, do not claim).
 - [ ] If option 2: keep "conditional" in the title and in the first sentence. Do not describe it as
       a formalization of Theorem 2.1.
-- [ ] Push the repository publicly and paste the real URL.
+- [x] Pushed public 2026-09-18T04:05Z. No issue posted anywhere for this problem yet.
 - [ ] Re-check the competition state: JSP issues for 000799, GitHub repos matching `jsp-000799-*`,
       and `formal-conjectures` issue #1037 (still open; statement PR #5872 was closed).
 - [ ] Post on its own. Do not batch it with other problems.

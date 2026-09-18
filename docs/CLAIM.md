@@ -1,7 +1,6 @@
 # Draft claim — JSP-000799 (Erdős 960)
 
-Draft text for a claim on `TheJustinSunPrize/awards`. Check the items at the bottom before
-posting.
+**Posted 2026-09-18 as [TheJustinSunPrize/awards#1041](https://github.com/TheJustinSunPrize/awards/issues/1041).**
 
 > Earlier versions of this file argued **against** claiming, because the paper's Lemma 2.2 was
 > an explicit hypothesis of the main theorem, which made the development conditional. That gap
@@ -143,10 +142,8 @@ paper's authors.
 
 - [x] Lemma 2.2 proved, so the main theorem is unconditional.
 - [x] Clean rebuild verified locally; evidence committed under `verification/`.
-- [ ] Push the updated repository before posting, so the claim points at the unconditional
-      theorem rather than the conditional one.
-- [ ] Keep the curve departure in the claim body. It is the one thing a reviewer could
-      reasonably call a deviation, and it should come from us rather than from them.
-- [ ] Re-check the competition state on the day of submission: JSP issues for 000799, GitHub
-      repositories matching `jsp-000799-*` or `erdos-960-*`, open `formal-conjectures` PRs.
-- [ ] Post on its own. Do not batch it with other problems.
+- [x] Repository pushed before posting, so the claim points at the unconditional theorem.
+- [x] The curve departure is stated in the claim body, in its own section.
+- [x] Competition state checked 2026-09-18 just before posting: nothing on any of the three
+      channels.
+- [x] Posted on its own.

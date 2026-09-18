@@ -129,6 +129,14 @@ $ grep -c -F "sorryAx" axioms.log                   → 0
 `grep -rn sorry Erdos960/` does match twice — both are the words `` `sorry`-free `` in file-header
 prose. The mechanical criterion is Lean's own `declaration uses 'sorry'` count, which is 0.
 
+The raw output of one such clean run is committed under
+[`verification/`](verification/README.md): [`build.log`](verification/build.log),
+[`axioms.log`](verification/axioms.log) with all 123 audited declarations,
+[`scan.log`](verification/scan.log) and [`CHECKSUMS.txt`](verification/CHECKSUMS.txt), so a
+reviewer can diff against their own run rather than take the numbers above on trust. Note what
+that record does and does not cover: it confirms the build and the axiom footprint of the
+**conditional** theorem, and it stays green regardless of the Lemma 2.2 gap.
+
 Environment: Lean `leanprover/lean4:v4.34.0`, Mathlib tag `v4.34.0`, commit
 `5ed2965256430c3649e86755f9576b54eca72435`. **Do not move the pins** — the proofs are written
 against that Mathlib API.

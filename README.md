@@ -50,6 +50,20 @@ One thing came out **better** than gate 0 predicted: the paper's Lemma 2.3 (no f
 points) was expected to be assumed too. It is not — `CurveModel.no_four_collinear` is *proved*
 from the collinearity criterion by pure group theory. The permanent gap is Lemma 2.2 alone.
 
+## Documents
+
+| Document | What it is |
+|---|---|
+| [`docs/GATE0.md`](docs/GATE0.md) | Why the Mathlib gap was routed around rather than filled: the full search for topology on elliptic-curve points, and the `PROCEED` verdict |
+| [`docs/statement-fidelity.md`](docs/statement-fidelity.md) | Statement-by-statement comparison with the paper, plus the seven deliberate choices |
+| [`docs/SORRY-LEDGER.md`](docs/SORRY-LEDGER.md) | All 13 original proof obligations, where each was discharged, and the one that became a hypothesis instead |
+| [`docs/ACCEPTANCE.md`](docs/ACCEPTANCE.md) | Unedited output of the build, the `sorry` scan and the axiom audit |
+| [`docs/COMBINATORIAL-REPORT.md`](docs/COMBINATORIAL-REPORT.md) | The `ZMod (7m)` side: Propositions 2.4 and 2.5, and where `n ≥ 72` is consumed |
+| [`docs/CURVE-REPORT.md`](docs/CURVE-REPORT.md) | The curve side: `CurveModel`, Lemma 2.3 as a theorem, and the `Concrete` namespace |
+| [`docs/SETUP.md`](docs/SETUP.md) | Environment reproduction, timings, disk footprint |
+| [`docs/CLAIM.md`](docs/CLAIM.md) | Draft issue text. Deliberately **not** posted as an award claim, with the reasoning |
+| [`docs/README.zh.md`](docs/README.zh.md) | Original Chinese repository notes |
+
 ## The question and the answer
 
 For a planar point set `A`, `ord(A)` is the number of *ordinary lines* — lines meeting `A` in
